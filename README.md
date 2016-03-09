@@ -5,6 +5,15 @@ https://github.com/agnwinds/python.
 
 Fundamentally, this code allows one to run a series of models which should be well understood and fairly stable. Once they are run they can be compared to the latest release outputs which are stored in **outputs_release/**
 
+The models run are generally the same models stored in $PYTHON/examples/core, and consist of:
+
+* cv_standard.pf -- Standard CV model (Shlosman & Vitello 1993; Long & Knigge 2002).
+* 1d_sn.pf -- simple Supernovae model as presented in Kerzendorf & Sim (2013).
+* star.pf -- simple spherical stellar wind model
+* fiducial_agn.pf -- QSO model from Higginbottom et al. (2013).
+* cv_macro_benchmark.pf -- Macro-atom CV run from Matthews et al. (2015).
+* m16_agn.pf -- Macro-atom AGN run from Matthews et al. (2016).
+
 ### Usage
 
 First, go to $PYTHON and check out the version of python you'd like to test. Compile it.

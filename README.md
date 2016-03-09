@@ -3,6 +3,8 @@
 This repository contains unit tests for the Monte Carlo radiative transfer code PYTHON, hosted at 
 https://github.com/agnwinds/python.
 
+Fundamentally, this code allows one to run a series of models which should be well understood and fairly stable. Once they are run they can be compared to the latest release outputs which are stored in **outputs_release/**
+
 ### Usage
 
 First, go to $PYTHON and check out the version of python you'd like to test. Compile it.

@@ -18,8 +18,6 @@ BENCH_FOLDER = "outputs_release/"
 
 def make_plots(names, FOLDER): 
 
-	set_folder(FOLDER) 
-
 	try:
 		VERSION=""
 		f = open("%s%s.out" % (FOLDER,names[0]), "r")
@@ -47,6 +45,9 @@ def make_plots(names, FOLDER):
 		# the file will be in subfolders for comparison
 		name = FOLDER + shortname
 		benchname = BENCH_FOLDER + shortname
+		PLOT_FOLDER = "plot%s" % FOLDER[4:]
+
+		os.system("mkdir %s" % PLOT_FOLDER)
 
 		# read in the parameter file
 		pf_dict = rd.read_pf(name)						
@@ -64,7 +65,7 @@ def make_plots(names, FOLDER):
 		print "%.2fpc Converged. Release: %.2f" % (100.0*convergence, 100.0*bench_convergence)
 
 		# run py_wind- only need to run this to create the onefile summary
-		util.run_py_wind(name, vers=VERSION)
+		#util.run_py_wind(name, vers=VERSION)
 
 		#p.make_geometry_plot(name)					# make plots of pywind quantities
 		#p.make_geometry_ratios(name)
@@ -86,9 +87,9 @@ def make_plots(names, FOLDER):
 			#get_standard_dev(shortname, s, s_bench)
 
 
-			p.make_residual_plot(s, s_bench, shortname)		# make residual plots
-			p.make_comp_plot(s, s_bench, shortname)			# make comparison plots
-			p.make_components_comp_plot(s, s_bench, shortname)	# make components comparison plots
+			p.make_residual_plot(s, s_bench, shortname, PLOT_FOLDER)		# make residual plots
+			p.make_comp_plot(s, s_bench, shortname, PLOT_FOLDER)				# make comparison plots
+			p.make_components_comp_plot(s, s_bench, shortname, PLOT_FOLDER)		# make components comparison plots
 
 
 
@@ -99,7 +100,7 @@ def make_plots(names, FOLDER):
 		s_bench = rd.read_spectrum (benchname+".log_spec_tot")
 
 		# make a comparison plot of the log_spec_tot file
-		p.make_log_spec_tot_comp_plot(s, s_bench, name)
+		p.make_log_spec_tot_comp_plot(s, s_bench, shortname, PLOT_FOLDER)	
 
 		#p.make_hc_plots_from_loop (shortname)
 		#p.make_ion_plots_from_loop (shortname)
@@ -121,20 +122,23 @@ if __name__ == "__main__":
 
 	os.system("mkdir plots")
 
-	mode == int(sys.argv[1])
+	mode = int(sys.argv[1])
 
 	# this is where the outputs and plots are stored
-	FOLDER = sys.argv[2]
+	FOLDER = sys.argv[2] +"/"
 
 	if mode == 1:
 		names = ["1d_sn", "star", "cv_standard"]
 	elif mode == 2:
-		names = ["1d_sn", , "star", "m16_agn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
+		names = ["1d_sn", "star", "fiducial_agn", "cv_standard"]
+	elif mode == 2:
+		names = ["1d_sn", "star", "m16_agn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
 
 	make_plots(names, FOLDER)
 
 	# import Nick's script to make the ion plots
-	from ion_plots import make_ion_plots
-	make_ion_plots(FOLDER)
+	if mode > 1:
+		from ion_plots import make_ion_plots
+		make_ion_plots(FOLDER)
 
 

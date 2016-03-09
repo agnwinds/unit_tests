@@ -9,16 +9,8 @@ import py_read_output as sub
 import os
 from astropy.io import ascii
 
-global FOLDER = ""
 
-
-def set_folder(folder_use):
-
-	FOLDER = folder_use 
-
-	return 0
-
-def make_log_spec_tot_comp_plot(s1, s2, name):
+def make_log_spec_tot_comp_plot(s1, s2, name, FOLDER):
 
 	'''
 	make a comaprison of the log_spec_tot output
@@ -62,7 +54,7 @@ def make_log_spec_tot_comp_plot(s1, s2, name):
 
 
 
-def make_components_comp_plot(s1, s2, name):
+def make_components_comp_plot(s1, s2, name, FOLDER):
 
 	'''
 	make a comaprison of the spectral components (Disk, Wind etc.)
@@ -167,7 +159,7 @@ def make_components_comp_plot(s1, s2, name):
 
 
 
-def make_geometry_ratios(name):
+def make_geometry_ratios(name, FOLDER):
 
 	# read electron density from the file - could also try e.g. te or ionC4
 	var = ["te", "tr", "ne", "nphot", "ioncH1", "ioncH2", "IP", "tot_lum"]
@@ -218,7 +210,7 @@ def make_geometry_ratios(name):
 
 
 
-def make_residual_plot(s1, s2, name):
+def make_residual_plot(s1, s2, name, FOLDER):
 
 	'''
 	make a residual plot of two spectrums
@@ -256,7 +248,7 @@ def make_residual_plot(s1, s2, name):
 	return 0
 
 
-def make_comp_plot(s1, s2, name):
+def make_comp_plot(s1, s2, name, FOLDER):
 
 	'''
 	make a comparison plot of two spectrums

@@ -40,29 +40,36 @@ def make_plots(names):
 
 	for i in range(len(names)):
 
+		# this is just the name of the parameter file
 		shortname = names[i]
+
+		# the file will be in subfolders for comparison
 		name = FOLDER + shortname
 		benchname = BENCH_FOLDER + shortname
 
-		pf_dict = rd.read_pf(name)						# read in pf file
+		# read in the parameter file
+		pf_dict = rd.read_pf(name)						
 
+
+		# try and read the output. if you get an index error it may have failed
 		try:
 			convergence = rd.read_convergence (name + ".out")		# get convergence of model
 			bench_convergence = rd.read_convergence (benchname + ".out")
 		except IndexError:
 			print "Couldn't read convergence info for root %s, possible failure" % name
 
+		# print out the convergence compared to the benchmark model
 		print "Model %s" % name
 		print "%.2fpc Converged. Release: %.2f" % (100.0*convergence, 100.0*bench_convergence)
 
-		# run py_wind- only need to run this to create the files
+		# run py_wind- only need to run this to create the onefile summary
 		util.run_py_wind(name, vers=VERSION)
 
 		#p.make_geometry_plot(name)					# make plots of pywind quantities
 		#p.make_geometry_ratios(name)
 
 
-		# this is the current dev spectral file
+		# try and read in the spectrum
 		make_plots=True
 		try:
 			s = rd.read_spectrum(name)
@@ -70,9 +77,9 @@ def make_plots(names):
 			print "Couldn't read spectrum for root %s, possible failure" % name
 			make_plots = False
 
-		# this is the benchmark spectral file to test against
+		# make plots against the benchmark spectrum
 		if make_plots:
-			
+
 			s_bench = rd.read_spectrum(benchname)
 
 			#get_standard_dev(shortname, s, s_bench)
@@ -84,7 +91,7 @@ def make_plots(names):
 
 
 
-		# this is the current dev spectot file
+		# this is the test spectot file
 		s = rd.read_spectrum (name+".log_spec_tot")
 
 		# this is the benchmark spectot file to test against
@@ -109,44 +116,21 @@ def make_plots(names):
 	return 0
 
 
-def get_standard_dev(run_name, s1, s2):
-
-	sd_dict = dict()
-
-	for i in range(2,len(s1.colnames)):
-
-		sd = get_one_standard_dev(s1[s1.colnames[i]], s2[s1.colnames[i]])
-
-		mean = np.mean(s1[s1.colnames[i]])
-
-		print "Run %s: Column %s Normalised Standard deviation in flux = %8.4e Mean %8.4e" % (run_name, s1.colnames[i], sd, mean)
-
-	return 0
-
-def get_one_standard_dev(array1, array2):
-
-	'''
-	array-like arguments
-	'''
-
-	N = len(array1)
-
-	diff = (array1 - array2)
-
-	diffsquaredsum = np.sum(diff * diff)
-
-	SD = np.sqrt(diffsquaredsum / N)
-
-	return SD
-
-
-
 if __name__ == "__main__":
 
 	os.system("mkdir plots")
 
-	names = ["1d_sn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
+	mode == int(sys.argv[1])
+
+	if mode == 1:
+		names = ["1d_sn", "star", "cv_standard"]
+	elif mode == 2:
+		names = ["1d_sn", , "star", "m16_agn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
 
 	make_plots(names)
+
+	# import Nick's script to make the ion plots
+	from ion_plots import make_ion_plots
+	make_ion_plots()
 
 

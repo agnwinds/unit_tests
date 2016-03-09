@@ -1,0 +1,81 @@
+#!/bin/sh
+##########################################
+#
+#		University of Southampton, 9 March 2016
+#
+#		James Matthews
+#
+#		run_test
+#
+# run_test is a shell script which compiles python then runs a load 
+# standard parameter files.
+#
+# Usage: ./run_test [version] [mode]"
+#  version: version of Python to run
+#  mode: 0, small test, 1, large parallel test
+#  or: -h : print this message
+#
+# Environment variables needed are
+# PYTHON : normal git repo
+##########################################
+
+display_help() { 
+	echo "run_test is a shell script which compiles PYTHON then runs a load of standard parameter files."
+	echo ""
+	echo "Usage: ./run_test [options]"
+	echo ""
+	echo "-v [version]: avoids using git to download and runs with the PYTHON version string supplied"
+	echo "-r : also pulls the latest release and runs with that"
+	echo "-h : print this message"
+	echo "default is to download the latest version and test against whatever release is in outputs_release"
+	echo "" 
+	exit 
+	} 
+
+
+VERSION=""
+MODE=1
+
+
+if [  $# -le 2 ]; then 
+    if [ $1 == "-h" ]; then
+    	display_help
+    fi
+else
+    VERSION=$1
+    MODE=$2    
+fi
+
+
+# First make sure the error and output files are empty.
+: > run_test_out.txt
+: > run_test_err.txt
+
+date > run_test_out.txt
+date > run_test_err.txt
+
+cp $PYTHON/examples/core/*.pf .
+
+Setup_Py_Dir
+
+# if we're in mode 1 then we are just running quick models
+# these are all runnable on 1 core in a reasonable time
+py$VERSION cv_standard > cv_standard.out &
+py$VERSION 1d_sn > 1d_sn.out &
+py$VERSION star > star.out &
+
+# run the ion loop
+python $PYTEST/scripts/ion_loop_jm.py $VERSION $VERSION standard78 &
+
+# if we are in mode 2 then we should really be running
+if [ $MODE == 2 ]
+	read -p "How many cores should I run the longer models on?" ncores
+    echo $ncores 
+    exit
+    nice mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
+    nice mpirun -n $ncores $PYTHON/bin/py$VERSION cv_macro_benchmark > cv_macro_benchmark.out &
+    nice mpirun -n $ncores $PYTHON/bin/py$VERSION m16_agn > m16_agn.out &
+fi
+
+
+

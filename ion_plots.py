@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-def make_ion_plots():
+def make_ion_plots(folder):
 	import matplotlib.pyplot as plt
 	import numpy as np
 	from astropy.io import ascii
@@ -16,14 +16,14 @@ def make_ion_plots():
 	py='_PL_fixed_t'
 	cl='_cloudy_pl_no_ce'
 	release_folder = "outputs_release/"
-	savefolder = "plots/"
+	savefolder = folder
 
-	py_h=ascii.read('py_hydrogen'+py+'.dat')
-	py_he=ascii.read('py_helium'+py+'.dat')
-	py_c=ascii.read('py_carbon'+py+'.dat')
-	py_n=ascii.read('py_nitrogen'+py+'.dat')
-	py_o=ascii.read('py_oxygen'+py+'.dat')
-	py_fe=ascii.read('py_iron'+py+'.dat')
+	py_h=ascii.read(folder+'py_hydrogen'+py+'.dat')
+	py_he=ascii.read(folder+'py_helium'+py+'.dat')
+	py_c=ascii.read(folder+'py_carbon'+py+'.dat')
+	py_n=ascii.read(folder+'py_nitrogen'+py+'.dat')
+	py_o=ascii.read(folder+'py_oxygen'+py+'.dat')
+	py_fe=ascii.read(folder+'py_iron'+py+'.dat')
 
 	py_h_rel=ascii.read(release_folder+'py_hydrogen'+py+'.dat')
 	py_he_rel=ascii.read(release_folder+'py_helium'+py+'.dat')
@@ -208,4 +208,4 @@ def make_ion_plots():
 
 if __name__ == "__main__":
 
-	make_ion_plots()
+	make_ion_plots(sys.argv[1])

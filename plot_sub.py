@@ -8,6 +8,7 @@ import numpy as np
 import py_read_output as sub
 import os
 from astropy.io import ascii
+import py_plot_util as util
 
 
 def make_log_spec_tot_comp_plot(s1, s2, name, FOLDER):
@@ -110,86 +111,97 @@ def make_components_comp_plot(s1, s2, name, FOLDER):
 
 
 
-# def make_geometry_plot(name):
-
-# 	# read electron density from the file - could also try e.g. te or ionC4
-# 	var = ["te", "tr", "ne", "nphot", "ioncH1", "ioncH2", "IP", "tot_lum"]
-
-
-# 	fig = figure(figsize=(16.6,11.6))
-# 	suptitle("Geometry: %s (left) v Python 78 (right)" % name)
-# 	locs = [1,2,5,6,9,10,13,14]
-# 	for i in range(len(var)):
-# 		subplot(4,4,locs[i])
-# 		x, z, value = sub.read_pywind_smart("%s.%s.dat" % (name, var[i]) )
-# 		contourf(z,x,np.log10(value) )
-# 		loglog()
-# 		title("LOG " + var[i])
-# 		colorbar()
-
-# 		subplot(4,4,locs[i]+2)
-# 		x, z, value = sub.read_pywind_smart("../../Python_78/wind_data/%s.%s.dat" % (name, var[i]) )
-# 		contourf(z,x,np.log10(value) )
-# 		loglog()
-# 		title("LOG " + var[i])
-# 		colorbar()
-
-# 	savefig("geo_%s.png" % name)
-# 	clf()
-
-
-# 	var = ["ionHe1", "ionHe2", "ionC3", "ionC4", "ionC5", "ionN5", "ionO6", "ionSi4"]
-# 	fig = figure(figsize=(16.6,11.6))
-# 	suptitle("Ions: %s (left) v Python 78 (right)" % name)
-# 	for i in range(len(var)):
-# 		subplot(8,4,locs[i])
-# 		x, z, value1 = sub.read_pywind_smart("%s.%s.dat" % (name, var[i]) )
-# 		contourf(z,x,np.log10(value1) )
-# 		loglog()
-# 		title("LOG " + var[i])
-# 		colorbar()
-
-# 		subplot(8,4,locs[i]+2)
-# 		x, z, value2 = sub.read_pywind_smart("../../Python_78/wind_data/%s.%s.dat" % (name, var[i]) )
-# 		contourf(z,x,np.log10(value2) )
-# 		loglog()
-# 		title("LOG " + var[i])
-# 		colorbar()
-
-
-
-# 	savefig("ions_%s.png" % name)
-# 	clf()
-
-# 	return 0
-
-
-
-
-def make_geometry_ratios(name, FOLDER):
+def make_geometry_plot(name, FOLDER, PLOT_FOLDER)	:
 
 	# read electron density from the file - could also try e.g. te or ionC4
-	var = ["te", "tr", "ne", "nphot", "ioncH1", "ioncH2", "IP", "tot_lum"]
+	var = ["te", "tr", "ne", "nphot", "ionH1", "ionH2", "IP", "lum_tot"]
+
+	data = sub.read_pywind_summary(FOLDER+name)
+	bench_data = sub.read_pywind_summary("outputs_release/"+name)
 
 
-	figure(figsize=(8.3,11.6))
-	suptitle("Difference Ratios Geometry: %s (left) v Python 78 (right)" % name)
-	cont = [0.75,0.9,0.95,0.99,1.0,1.01,1.05,1.1, 1.25]
-
+	fig = figure(figsize=(16.6,11.6))
+	suptitle("Geometry: %s (left) v Last Release (right)" % name)
+	locs = [1,2,5,6,9,10,13,14]
 	for i in range(len(var)):
+		subplot(4,4,locs[i])
 
-		subplot(4,2,i+1)
-		x, z, value1 = sub.read_pywind_smart("%s.%s.dat" % (name, var[i]) )
-		x, z, value2 = sub.read_pywind_smart("../../Python_78/wind_data/%s.%s.dat" % (name, var[i]) )
+		x, z, value = util.wind_to_masked(data, var[i])
 
-		print np.mean(value2/value1), var[i]
+		contourf(x,z,np.log10(value) )
 
-		contourf(z,x, value2/value1, cont, extend="both")
 		loglog()
 		title("LOG " + var[i])
 		colorbar()
 
-	savefig("geo_diff_%s.png" % name)
+		subplot(4,4,locs[i]+2)
+		x, z, value = util.wind_to_masked(bench_data, var[i])
+		contourf(x,z,np.log10(value) )
+		loglog()
+		title("LOG " + var[i])
+		colorbar()
+
+	savefig("%s/geo_%s.png" % (PLOT_FOLDER, name) )
+	clf()
+
+
+	var = ["ionHe1", "ionHe2", "ionC3", "ionC4", "ionC5", "ionN5", "ionO6", "ionSi4"]
+	fig = figure(figsize=(16.6,11.6))
+	suptitle("Ions: %s (left) v Last Release (right)" % name)
+
+	for i in range(len(var)):
+		subplot(4,4,locs[i])
+		x, z, value = util.wind_to_masked(data, var[i])
+		contourf(x,z,np.log10(value) )
+		loglog()
+		title("LOG " + var[i])
+		colorbar()
+
+		subplot(4,4,locs[i]+2)
+		x, z, value = util.wind_to_masked(bench_data, var[i])
+		contourf(x,z,np.log10(value) )
+		loglog()
+		title("LOG " + var[i])
+		colorbar()
+
+
+
+	savefig("%s/ions_%s.png" % (PLOT_FOLDER, name) )
+	clf()
+
+	return 0
+
+
+
+
+def make_geometry_ratios(name, FOLDER, PLOT_FOLDER):
+
+	# read electron density from the file - could also try e.g. te or ionC4
+	var = ["te", "tr", "ne", "nphot", "ionH1", "ionH2", "IP", "lum_tot"]
+
+	data = sub.read_pywind_summary(FOLDER+name)
+	bench_data = sub.read_pywind_summary("outputs_release/"+name)
+
+
+
+	figure(figsize=(8.3,11.6))
+	suptitle("Difference Ratios Geometry: %s (left) v Python 78 (right)" % name)
+	cont = np.arange(0.5,2,0.1)
+
+	for i in range(len(var)):
+
+		subplot(4,2,i+1)
+
+		x, z, value1 = util.wind_to_masked(data, var[i])
+		x, z, value2 = util.wind_to_masked(bench_data, var[i])
+
+
+		contourf(x,z, value2/value1, cont, extend="both")
+		loglog()
+		title("LOG " + var[i])
+		colorbar()
+
+	savefig("%s/geo_diff_%s.png" % (PLOT_FOLDER, name))
 	clf()
 
 
@@ -200,17 +212,17 @@ def make_geometry_ratios(name, FOLDER):
 	for i in range(len(var)):
 
 		subplot(4,2,i+1)
-		x, z, value1 = sub.read_pywind_smart("%s.%s.dat" % (name, var[i]) )
-		x, z, value2 = sub.read_pywind_smart("../../Python_78/wind_data/%s.%s.dat" % (name, var[i]) )
+		x, z, value1 = util.wind_to_masked(data, var[i])
+		x, z, value2 = util.wind_to_masked(bench_data, var[i])
 
-		contourf(z,x,value2/value1, cont, extend="both")
+		contourf(x,z,value2/value1, cont, extend="both")
 		loglog()
 		title("LOG " + var[i])
 		colorbar()
 
 
 
-	savefig("ions_diff_%s.png" % name)
+	savefig("%s/ions_diff_%s.png" % (PLOT_FOLDER, name))
 	clf()
 
 	return 0

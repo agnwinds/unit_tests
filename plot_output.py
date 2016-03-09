@@ -8,6 +8,7 @@ import numpy as np
 import sys
 import os
 from astropy.io import ascii
+import time
 
 '''
 usage
@@ -15,6 +16,32 @@ usage
 '''
   
 BENCH_FOLDER = "outputs_release/"
+
+def run_py_wind (fname, FOLDER, vers="", cmds=None, ilv=None):
+	'''
+	run version vers of py_wind on file fname.wind_save, removes
+	all traces and moves the .complete file to FOLDER/
+	'''
+
+	if cmds == None:
+		cmds = np.array(["1","1","1","q"]) # cms to make the onefile summaries
+
+	x = cmds
+	np.savetxt("_tempcmd.txt", x, fmt = "%s")
+
+	cmd = 'py_wind'+vers+" "+FOLDER+fname+' < _tempcmd.txt > tempfile'
+
+	isys = os.system(cmd)
+
+	time.sleep(3)
+
+	#os.system("mv %s.complete %s" % (fname, FOLDER))
+
+	# remove temporary file
+	os.system("rm -f _tempcmd.txt py_wind.pf logfile tempfile tmp.rdpar")
+	return isys
+
+
 
 def make_plots(names, FOLDER): 
 
@@ -65,10 +92,11 @@ def make_plots(names, FOLDER):
 		print "%.2fpc Converged. Release: %.2f" % (100.0*convergence, 100.0*bench_convergence)
 
 		# run py_wind- only need to run this to create the onefile summary
-		#util.run_py_wind(name, vers=VERSION)
+		run_py_wind(shortname, FOLDER, vers=VERSION)
 
-		#p.make_geometry_plot(name)					# make plots of pywind quantities
-		#p.make_geometry_ratios(name)
+		
+		p.make_geometry_plot(shortname, FOLDER, PLOT_FOLDER)					# make plots of pywind quantities
+		p.make_geometry_ratios(shortname, FOLDER, PLOT_FOLDER)
 
 
 		# try and read in the spectrum

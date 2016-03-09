@@ -48,6 +48,14 @@ else
     MODE=$2    
 fi
 
+# make a folder to store my outputs in
+DATE=$(date +%F)
+FOLDER="test_"$VERSION"_"$DATE
+echo $FOLDER
+mkdir $FOLDER
+cd $FOLDER
+
+
 
 # First make sure the error and output files are empty.
 : > run_test_out.txt
@@ -66,19 +74,21 @@ Setup_Py_Dir
 
 # if we are in mode 2 or 3 then we should really be running multicore
 if [[ $MODE == 2 ]]; then
-    read -p "How many cores should I run fiducial_agn on?" ncores
-    echo "Running 1 jobs on "$ncores" cores each"
+    read -p "How many cores should I run fiducial_agn and loop on?" ncores
+    echo "Running 2 jobs on "$ncores" cores each"
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
+    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores
 elif [[ $MODE == 3 ]]; then
     read -p "How many cores should I run the longer models on?" ncores
-    echo "Running 3 jobs on "$ncores" cores each"
+    echo "Running 4 jobs on "$ncores" cores each"
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION cv_macro_benchmark > cv_macro_benchmark.out &
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION m16_agn > m16_agn.out &
+    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores
 fi
 
 # if we're in mode 1 then we are just running quick models
-# these are all runnable on 1 core in a reasonable time
+# these are all runnable on 1 core in a reasonable time and run in all modes
 py$VERSION cv_standard > cv_standard.out &
 py$VERSION 1d_sn > 1d_sn.out &
 py$VERSION star > star.out &

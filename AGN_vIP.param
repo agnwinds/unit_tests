@@ -2,14 +2,12 @@ loop IP
 loop_range -10 5
 temperature 10000
 lum_0 2.207e30
-npoints 151
+npoints 81
 run_name PL_fixed_t
 spec_type table
 agn_alpha -0.9
 agn_table_lo 0.136
 agn_table_hi 20000
-python_ver py79d_dev
 python_args "-f"
-mpi 24
 energy_range 0.00001 50000
 n_ioniz 1

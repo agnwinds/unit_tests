@@ -9,7 +9,7 @@ import py_read_output as sub
 import os
 from astropy.io import ascii
 
-FOLDER = "plots/"
+FOLDER = ""
 
 def make_log_spec_tot_comp_plot(s1, s2, name):
 

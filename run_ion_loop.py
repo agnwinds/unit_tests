@@ -32,7 +32,6 @@ if __name__ == "__main__":		# allows one to run from command line without runnin
 	import sys, subprocess
 	import numpy as np
 	from scipy.optimize import brentq
-	import v_hydro_sub as vhs
 	from astropy import units as u
 	from astropy import constants as c 
 
@@ -49,11 +48,11 @@ if __name__ == "__main__":		# allows one to run from command line without runnin
 
 
 	param_file=sys.argv[1]
-	#version_string = sys.argv[2]
+	version_string = sys.argv[2]
 	
-	python_ver='py'
+	python_ver='py'+version_string
 	atomic_data='data/standard79'
-	nmpi=1
+	nmpi=int(sys.argv[3])
 	temp=10000.0
 	emin=0.0001
 	emax=10000.0

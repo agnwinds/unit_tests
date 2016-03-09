@@ -1,6 +1,7 @@
 ### Unit tests for Python
 
-This repository contains unit tests for the Monte Carlo radiative transfer 
+This repository contains unit tests for the Monte Carlo radiative transfer code PYTHON, hosted at 
+https://github.com/agnwinds/python.
 
 ### Usage
 

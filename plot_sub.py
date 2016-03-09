@@ -9,7 +9,14 @@ import py_read_output as sub
 import os
 from astropy.io import ascii
 
-FOLDER = ""
+global FOLDER = ""
+
+
+def set_folder(folder_use):
+
+	FOLDER = folder_use 
+
+	return 0
 
 def make_log_spec_tot_comp_plot(s1, s2, name):
 

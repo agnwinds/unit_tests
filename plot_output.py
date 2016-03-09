@@ -14,10 +14,11 @@ usage
  e.g. python plot_output.py 
 '''
   
-FOLDER = ""
 BENCH_FOLDER = "outputs_release/"
 
-def make_plots(names):  
+def make_plots(names, FOLDER): 
+
+	set_folder(FOLDER) 
 
 	try:
 		VERSION=""
@@ -122,15 +123,18 @@ if __name__ == "__main__":
 
 	mode == int(sys.argv[1])
 
+	# this is where the outputs and plots are stored
+	FOLDER = sys.argv[2]
+
 	if mode == 1:
 		names = ["1d_sn", "star", "cv_standard"]
 	elif mode == 2:
 		names = ["1d_sn", , "star", "m16_agn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
 
-	make_plots(names)
+	make_plots(names, FOLDER)
 
 	# import Nick's script to make the ion plots
 	from ion_plots import make_ion_plots
-	make_ion_plots()
+	make_ion_plots(FOLDER)
 
 

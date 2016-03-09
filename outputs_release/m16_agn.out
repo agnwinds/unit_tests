@@ -1,0 +1,245 @@
+m16_agn
+xxx Sat Feb 20 15:21:11 2016      0.0 START                m16_agn 
+Thread 0 starting.
+!!Python Version 80 
+!!Git commit hash 45d40681d8e1167599676546aea9df66c60581dd
+!!Python is running with 20 processors
+This is MPI task number 0 (a total of 20 tasks are running).
+xxx Sat Feb 20 15:21:11 2016      0.0 NOK                  Initializing variables for m16_agn
+Reading data from file m16_agn.pf
+Wind_type(0=SV,1=Sphere,2=Previous,3=Hydro,4=Corona,5=knigge,6=homologous,7=yso,8=elvis,9=shell)	  0
+Atomic_data   data/h10_hetop_lohe1_standard78
+Get_atomicdata: Reading from masterfile data/h10_hetop_lohe1_standard78
+error_count: This error will no longer be logged: Get_atomic_data: No configuration found to match lower level of line %d
+
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 0
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 2
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Get_atomic_data: Simple line data ignored for Macro-ion: 3
+Data of  14 elements, 178 ions,  3703 levels,  5504 lines, and    90 topbase records
+Macro    14 elements,   5 ions,    23 levels,    90 lines, and    21 topbase records
+Simple   14 elements, 173 ions,  3680 levels,  5414 lines, and    69 topbase records
+We have read in   0 Inner shell photoionization cross sections
+                  0 have matching electron yield data
+                  0 have matching fluorescent yield data
+We have read in 149 Dielectronic recombination coefficients
+We have read in   0 Cardona partition functions coefficients
+We have read in 164 Badnell totl Radiative rate coefficients
+We have read in 135 Badnell GS   Radiative rate coefficients over the temp range 6.760000e+03 to 1.000000e+07
+We have read in  41 Scaled electron temperature frequency averaged gaunt factors
+The minimum frequency for photoionization is 3.29e+13
+The minimum frequency for inner shell ionization is 1.00e+50
+get_atomic_data: Evaluation:  There are     14 elements     while     50 are currently allowed
+get_atomic_data: Evaluation:  There are    178 ions         while    500 are currently allowed
+get_atomic_data: Evaluation:  There are   3703 levels       while  12000 are currently allowed
+get_atomic_data: Evaluation:  There are   5504 lines        while 200000 are currently allowed
+get_atomic_data: Evaluation:  There are     23 macro levels while    200 are currently allowed
+get_atomic_data: Evaluation:  The maximum value bb jumps is 9 while 100 are currently allowed
+get_atomic_data: Evaluation:  The maximum value bf jumps is 9 while 100 are currently allowed
+photons_per_cycle	  2.000000e+06
+Photons per cycle per MPI task will be 100000
+Ionization_cycles	  20
+spectrum_cycles	  5
+Coord.system(0=spherical,1=cylindrical,2=spherical_polar,3=cyl_var)	  1
+Wind.dim.in.x_or_r.direction	  100
+Wind.dim.in.z_or_theta.direction	  200
+Wind_ionization(0=on.the.spot,1=LTE,2=fixed,3=recalc_bb,6=pairwise_bb,7=pairwise_pow,8=matrix_bb,9=matrix_pow)	  9
+Line_transfer(0=pure.abs,1=pure.scat,2=sing.scat,3=escape.prob,6=macro_atoms,7=macro_atoms+aniso.scattering)	  5
+Thermal_balance_options(0=everything.on,1=no.adiabatic)	  0
+System_type(0=star,1=binary,2=agn)	  2
+disk.type(0=no.disk,1=standard.flat.disk,2=vertically.extended.disk)	  1
+Disk_radiation(y=1)	  1
+Wind_radiation(y=1)	  1
+QSO_BH_radiation(y=1)	  1
+Rad_type_for_disk(0=bb,1=models)_to_make_wind	  0
+Rad_type_for_agn(0=bb,1=models,3=power_law,4=cloudy_table,5=bremsstrahlung)_to_make_wind	  3
+NSH -4
+Not Trying to make a start with a power law boundary layer -3
+mstar(msol)	  1.000000e+09
+rstar(cm)	  8.856670e+14
+disk.mdot(msol/yr)	  5.000000e+00
+Disk.illumination.treatment(0=no.rerad,1=high.albedo,2=thermalized.rerad,3=analytic)	  0
+Disk.temperature.profile(0=standard;1=readin)	  0
+disk.radmax(cm)	  1.000000e+17
+geo.diskrad  1.000000e+17
+lum_agn(ergs/s)	  1.000000e+45
+OK, the agn lum will be about 4.24e-02 the disk lum
+agn_power_law_index	  -9.000000e-01
+AGN Input parameters give a power law constant of 9.759422e+42
+Warning:  Question (wind.radmax(cm)) does not match word (Torus(0=no,1=yes)) in file. Continuing!
+wind.radmax(cm)	  1.000000e+20
+wind.t.init	  1.000000e+05
+Creating an SV wind model for a Cataclysmic Variable
+wind.mdot(msol/yr)	  5.000000e+00
+sv.diskmin(units_of_rstar)	  5.000000e+01
+sv.diskmax(units_of_rstar)	  1.000000e+02
+sv.thetamin(deg)	  7.000000e+01
+sv.thetamax(deg)	  8.200000e+01
+sv.mdot_r_exponent	  0.000000e+00
+sv.v_infinity(in_units_of_vescape	  1.000000e+00
+sv.acceleration_length(cm)	  1.000000e+19
+sv.acceleration_exponent	  5.000000e-01
+wind.filling_factor(1=smooth,<1=clumped)	  1.000000e-02
+DFUDGE set to 1.000000e+10 based on geo.rmax
+The star in the system does not radiate
+There is a disk which radiates and absorbs
+There is no boundary layer
+There is a BH  which radiates
+Rad_type_for_disk(0=bb,1=models,2=uniform)_in_final_spectrum	  0
+Rad_type_for_agn(3=power_law,4=cloudy_table,5=bremsstrahlung)_in_final_spectrum	  3
+spectrum_wavemin	  5.000000e+02
+spectrum_wavemax	  7.500000e+03
+no_observers	  8
+angle(0=pole)	  2.000000e+01
+angle(0=pole)	  4.000000e+01
+angle(0=pole)	  6.000000e+01
+angle(0=pole)	  7.000000e+01
+angle(0=pole)	  7.500000e+01
+angle(0=pole)	  8.000000e+01
+angle(0=pole)	  8.500000e+01
+angle(0=pole)	  8.900000e+01
+No phase information needed as system type 2 is not a binary
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+Warning:  Question (live.or.die(0).or.extract(anything_else)) does not match word (phase(0=inferior_conjunction)) in file. Continuing!
+live.or.die(0).or.extract(anything_else)	  1
+OK, extracting from specific angles
+Warning:  Question (spec.type(flambda(1),fnu(2),basic(other)) does not match word (Select_specific_no_of_scatters_in_spectra(y/n)) in file. Continuing!
+Warning:  Question (spec.type(flambda(1),fnu(2),basic(other)) does not match word (Select_photons_by_position(y/n)) in file. Continuing!
+spec.type(flambda(1),fnu(2),basic(other)	  1
+OK, generating flambda at 100pc
+reverb.type	  0
+Increasing maximum frequency to twice the Helium edge
+Warning:  Question (Photon.sampling.approach(0=T,1=(f1,f2),2=cv,3=yso,4=user_defined,5=cloudy_test,6=wide,7=AGN,8=logarithmic)) does not match word (Extra.diagnostics(0=no)) in file. Continuing!
+Warning:  Question (Photon.sampling.approach(0=T,1=(f1,f2),2=cv,3=yso,4=user_defined,5=cloudy_test,6=wide,7=AGN,8=logarithmic)) does not match word (Use.standard.care.factors(1=yes)) in file. Continuing!
+Photon.sampling.approach(0=T,1=(f1,f2),2=cv,3=yso,4=user_defined,5=cloudy_test,6=wide,7=AGN,8=logarithmic)	  7
+bands_init: There are 10 bands
+bands_init: band 0,  f1= 1.000e+14,  f2= 1.000e+15, frac=0.10
+bands_init: band 0, eV1= 4.136e-01, eV2= 4.136e+00, frac=0.10
+bands_init: band 0, alpha1=0.047994, alpha2=0.479944, frac=0.10
+bands_init: band 1,  f1= 1.000e+15,  f2= 3.162e+15, frac=0.10
+bands_init: band 1, eV1= 4.136e+00, eV2= 1.308e+01, frac=0.10
+bands_init: band 1, alpha1=0.479944, alpha2=1.517582, frac=0.10
+bands_init: band 2,  f1= 3.162e+15,  f2= 1.000e+16, frac=0.10
+bands_init: band 2, eV1= 1.308e+01, eV2= 4.136e+01, frac=0.10
+bands_init: band 2, alpha1=1.517582, alpha2=4.799438, frac=0.10
+bands_init: band 3,  f1= 1.000e+16,  f2= 3.162e+16, frac=0.10
+bands_init: band 3, eV1= 4.136e+01, eV2= 1.308e+02, frac=0.10
+bands_init: band 3, alpha1=4.799438, alpha2=15.175823, frac=0.10
+bands_init: band 4,  f1= 3.162e+16,  f2= 1.000e+17, frac=0.10
+bands_init: band 4, eV1= 1.308e+02, eV2= 4.136e+02, frac=0.10
+bands_init: band 4, alpha1=15.175823, alpha2=47.994379, frac=0.10
+bands_init: band 5,  f1= 1.000e+17,  f2= 3.162e+17, frac=0.10
+bands_init: band 5, eV1= 4.136e+02, eV2= 1.308e+03, frac=0.10
+bands_init: band 5, alpha1=47.994379, alpha2=151.758227, frac=0.10
+bands_init: band 6,  f1= 3.162e+17,  f2= 1.000e+18, frac=0.10
+bands_init: band 6, eV1= 1.308e+03, eV2= 4.136e+03, frac=0.10
+bands_init: band 6, alpha1=151.758227, alpha2=479.943793, frac=0.10
+bands_init: band 7,  f1= 1.000e+18,  f2= 3.162e+18, frac=0.10
+bands_init: band 7, eV1= 4.136e+03, eV2= 1.308e+04, frac=0.10
+bands_init: band 7, alpha1=479.943793, alpha2=1517.582275, frac=0.10
+bands_init: band 8,  f1= 3.162e+18,  f2= 1.000e+19, frac=0.10
+bands_init: band 8, eV1= 1.308e+04, eV2= 4.136e+04, frac=0.10
+bands_init: band 8, alpha1=1517.582275, alpha2=4799.437934, frac=0.10
+bands_init: band 9,  f1= 1.000e+19,  f2= 1.000e+20, frac=0.10
+bands_init: band 9, eV1= 4.136e+04, eV2= 4.136e+05, frac=0.10
+bands_init: band 9, alpha1=4799.437934, alpha2=47994.379337, frac=0.10
+freqs_init: Photons will be generated between     0.41 (1.00e+14) and 413620.00 (1.00e+20)
+freqs_init: Of 10 starting intervals, 10 will have photons
+freqs_init: test 1.000000e+20 1.000000e+20
+freqs_init: There were 10 final intervals
+freqs_init:     0.41 (1.00e+14)        4.14 (1.00e+15)  
+freqs_init:     4.14 (1.00e+15)       13.08 (3.16e+15)  
+freqs_init:    13.08 (3.16e+15)       41.36 (1.00e+16)  
+freqs_init:    41.36 (1.00e+16)      130.79 (3.16e+16)  
+freqs_init:   130.79 (3.16e+16)      413.62 (1.00e+17)  
+freqs_init:   413.62 (1.00e+17)     1307.87 (3.16e+17)  
+freqs_init:  1307.87 (3.16e+17)     4136.20 (1.00e+18)  
+freqs_init:  4136.20 (1.00e+18)    13078.66 (3.16e+18)  
+freqs_init: 13078.66 (3.16e+18)    49634.40 (1.20e+19)  
+freqs_init: 49634.40 (1.20e+19)    413620.00 (1.00e+20)  
+Old file python.pf.old did not exist
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+NSH -4
+wind2d: 20000 cells of which 1627 are in inwind, 543 partially in_wind, & 2170 with pos. vol
+wind2d: Cell   0 ( 0, 0) has 1 corners in wind, but zero volume
+Allocated      17088 bytes for each of  2171 elements variable length plasma arrays totaling       37.1 Mb 
+wind_div_v: div v -1.930350e-11 is negative in cell 9898. Major problem if inwind (1) == 0
+wind_div_v: div v -1.434471e-10 is negative in cell 10905. Major problem if inwind (1) == 0
+wind_div_v: div v -1.013575e-10 is negative in cell 11509. Major problem if inwind (1) == 0
+[srv01039:22849] *** Process received signal ***
+[srv01039:22849] Signal: Segmentation fault (11)
+[srv01039:22849] Signal code: Address not mapped (1)
+[srv01039:22849] Failing at address: 0x70
+[srv01039:22849] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10340) [0x7f74e69b4340]
+[srv01039:22849] [ 1] py80() [0x4204fc]
+[srv01039:22849] [ 2] py80() [0x402b5e]
+[srv01039:22849] [ 3] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f74e6600ec5]
+[srv01039:22849] [ 4] py80() [0x403c07]
+[srv01039:22849] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 4 with PID 22849 on node srv01039 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------

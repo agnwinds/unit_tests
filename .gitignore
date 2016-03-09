@@ -1,0 +1,10 @@
+*.pyc
+*.wind_save
+logfile
+python.pf.old
+python.pf
+tempfile
+py_wind.pf
+.DS_Store
+data
+*data

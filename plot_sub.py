@@ -38,6 +38,8 @@ def make_log_spec_tot_comp_plot(s1, s2, name, FOLDER):
 	plot(s1["Lambda"], smooth(s1["Scattered"]), label="Scattered")
 	legend()
 
+	ylim(0,gca().get_ylim()[1])
+
 	subplot(122)
 	plot(s2["Lambda"], smooth(s2["Emitted"]), label="Emitted")
 	plot(s2["Lambda"], smooth(s2["Disk"]), label="Disk")
@@ -45,6 +47,8 @@ def make_log_spec_tot_comp_plot(s1, s2, name, FOLDER):
 	plot(s2["Lambda"], smooth(s2["HitSurf"]), label="HitSurf")
 	plot(s2["Lambda"], smooth(s2["Scattered"]), label="Scattered")
 	legend()
+
+	ylim(0,gca().get_ylim()[1])
 
 
 	xlabel("Wavelength")
@@ -80,6 +84,8 @@ def make_components_comp_plot(s1, s2, name, FOLDER):
 	plot(s1["Lambda"], smooth(s1["Scattered"]), label="Scattered")
 	legend()
 
+	ylim(0,gca().get_ylim()[1])
+
 	subplot(122)
 	plot(s2["Lambda"], smooth(s2["Emitted"]), label="Emitted")
 	plot(s2["Lambda"], smooth(s2["Disk"]), label="Disk")
@@ -87,6 +93,7 @@ def make_components_comp_plot(s1, s2, name, FOLDER):
 	plot(s2["Lambda"], smooth(s2["HitSurf"]), label="HitSurf")
 	plot(s2["Lambda"], smooth(s2["Scattered"]), label="Scattered")
 	legend()
+	ylim(0,gca().get_ylim()[1])
 
 
 	xlabel("Wavelength")

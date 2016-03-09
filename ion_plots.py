@@ -16,7 +16,7 @@ def make_ion_plots(folder):
 	py='_PL_fixed_t'
 	cl='_cloudy_pl_no_ce'
 	release_folder = "outputs_release/"
-	savefolder = folder
+	savefolder = "plot"+folder[4:]
 
 	py_h=ascii.read(folder+'py_hydrogen'+py+'.dat')
 	py_he=ascii.read(folder+'py_helium'+py+'.dat')

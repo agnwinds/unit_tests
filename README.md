@@ -24,8 +24,11 @@ To run the test
 ./run_test 80a 1
 ```
 
-Args: the first argument is the version. The second argument set to 1 if you are doing a short run 
-on e.g. a laptop. If this is set to 2 then the program assumes you are running on a server with a decent amount of cores and asks you how many it should use for the more intensive models.
+Args: 
+* the first argument is the version of Python you have just compiled 
+* The second argument set to 1 if you are doing a short run on e.g. a laptop, and runs serial
+* If this is set to 2 then the program also runs the fiducial agn and ion loops on multi cores
+* If this is set to 3 then the program runs the full test suite and needs a bunch of cores
 
 This will run the test on version python 80a. Note that it copies the parameter files out of $PYTHON/examples to run, so that's why you have to have checked out a compatible version above.
 
@@ -35,6 +38,15 @@ Once the test has run, you can plot the outputs and check some aspects of the ru
 
 ```
 python plot_output.py
+```
+
+### Folders
+
+If you run a test on version 80a on 2016-03-09 then your output files and plots will go into two separate folders entitled
+
+```
+test_80a_2016-03-09
+plot_80a_2016-03-09
 ```
 
 ### Environment variables

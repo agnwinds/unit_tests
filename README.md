@@ -49,8 +49,12 @@ Wait a while.
 Once the test has run, you can plot the outputs and check some aspects of the run by typing
 
 ```
-python plot_output.py
+python plot_output.py 1 test_80a_2016-03-09/
 ```
+
+Args: 
+* the first argument is the mode as above
+* the second one is the folder the test got saved in
 
 ### Folders
 
@@ -65,3 +69,13 @@ plot_80a_2016-03-09
 
 * ```$PYTHON''' must be defined
 * $PYTHON/py_progs/ must be in your ```$PYTHONPATH'''
+
+### Improvements
+
+Here are some improvements that need to be made, see also the Issues page:
+
+* Need to be able to do diffs and check them automatically
+* Need a way to the wind plot 1d models and other coordinate systems
+* Wind plots are fairly ugly and don't always have the right limits
+* Need some way for estimating if something is within photon noise
+* Need to add heating and cooling plots

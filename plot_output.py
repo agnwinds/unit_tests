@@ -159,7 +159,7 @@ if __name__ == "__main__":
 		names = ["1d_sn", "star", "cv_standard"]
 	elif mode == 2:
 		names = ["1d_sn", "star", "fiducial_agn", "cv_standard"]
-	elif mode == 2:
+	elif mode == 3:
 		names = ["1d_sn", "star", "m16_agn", "cv_macro_benchmark", "fiducial_agn", "cv_standard"]
 
 	make_plots(names, FOLDER)

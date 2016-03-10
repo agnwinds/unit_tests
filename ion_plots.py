@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
 def make_ion_plots(folder):
+
+	'''
+	makes a series of ionization plots and stores them
+	in savefolder
+	'''
+	
 	import matplotlib.pyplot as plt
 	import numpy as np
 	from astropy.io import ascii
@@ -206,6 +212,8 @@ def make_ion_plots(folder):
 
 	print "end"
 
+
 if __name__ == "__main__":
 
+	''' normally this function gets called from plot_output.py'''
 	make_ion_plots(sys.argv[1])

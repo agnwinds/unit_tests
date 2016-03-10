@@ -14,6 +14,18 @@ The models run are generally the same models stored in $PYTHON/examples/core, an
 * cv_macro_benchmark.pf -- Macro-atom CV run from Matthews et al. (2015).
 * m16_agn.pf -- Macro-atom AGN run from Matthews et al. (2016).
 
+There is also an ion loop run using a governing python script which relies on the parameter file AGN_vIP.param.
+
+these models have the following runtimes on endjinn
+
+* 1d_sn: 272.6s in serial
+* star: 895.6s in serial 
+* cv_standard: 3066.8s in serial
+* fiducial_agn: 5292.9s on 8 cores
+* ion loop: 900s on 8 cores
+* m16_agn: 58983.9s (14 hours+) on 8 cores
+* cv_macro_benchmark: 47122.2s (13 hours) on 8 cores
+
 ### Usage
 
 First, go to $PYTHON and check out the version of python you'd like to test. Compile it.

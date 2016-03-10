@@ -17,11 +17,53 @@ usage
   
 BENCH_FOLDER = "outputs_release/"
 
+def which(program):
+	'''
+	routine which checks if a program exists in the PATH.
+	just like the shell command which.
+
+	Parameters:
+		program 	string 
+					name of binary e.g. py_wind80
+
+	Returns:
+		None 		not found 
+		String 		location of binary
+	'''
+
+	def is_exe(fpath):
+		return os.path.exists(fpath) and os.access(fpath, os.X_OK)
+
+	def ext_candidates(fpath):
+		yield fpath
+		for ext in os.environ.get("PATHEXT", "").split(os.pathsep):
+			yield fpath + ext
+
+	fpath, fname = os.path.split(program)
+	if fpath:
+		if is_exe(program):
+			return program
+	else:
+		for path in os.environ["PATH"].split(os.pathsep):
+			exe_file = os.path.join(path, program)
+			for candidate in ext_candidates(exe_file):
+				if is_exe(candidate):
+					return candidate
+
+	return None
+
+
+
 def run_py_wind (fname, FOLDER, vers="", cmds=None, ilv=None):
 	'''
 	run version vers of py_wind on file fname.wind_save, removes
 	all traces and moves the .complete file to FOLDER/
 	'''
+
+	py_wind_cmd = 'py_wind'+vers
+
+	if which(py_wind_cmd) == None:
+		raise RuntimeError("Could not find executable %s. Compile it!" % py_wind_cmd)
 
 	if cmds == None:
 		cmds = np.array(["1","1","1","q"]) # cms to make the onefile summaries
@@ -29,7 +71,7 @@ def run_py_wind (fname, FOLDER, vers="", cmds=None, ilv=None):
 	x = cmds
 	np.savetxt("_tempcmd.txt", x, fmt = "%s")
 
-	cmd = 'py_wind'+vers+" "+FOLDER+fname+' < _tempcmd.txt > tempfile'
+	cmd = py_wind_cmd+" "+FOLDER+fname+' < _tempcmd.txt > tempfile'
 
 	isys = os.system(cmd)
 

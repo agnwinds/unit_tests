@@ -185,7 +185,7 @@ def make_geometry_ratios(name, FOLDER, PLOT_FOLDER):
 
 
 	figure(figsize=(8.3,11.6))
-	suptitle("Difference Ratios Geometry: %s (left) v Python 78 (right)" % name)
+	suptitle("Difference Ratios Geometry: %s (left) v Last Release (right)" % name)
 	cont = np.arange(0.5,2,0.1)
 
 	for i in range(len(var)):
@@ -207,7 +207,7 @@ def make_geometry_ratios(name, FOLDER, PLOT_FOLDER):
 
 	var = ["ionHe1", "ionHe2", "ionC3", "ionC4", "ionC5", "ionN5", "ionO6", "ionSi4"]
 	figure(figsize=(8.3,11.6))
-	suptitle("Difference Ratios Ions: %s (left) v Python 78 (right)" % name)
+	suptitle("Difference Ratios Ions: %s (left) v Last Release (right)" % name)
 
 	for i in range(len(var)):
 

@@ -77,14 +77,14 @@ if [[ $MODE == 2 ]]; then
     read -p "How many cores should I run fiducial_agn and loop on?" ncores
     echo "Running 2 jobs on "$ncores" cores each"
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
-    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores
+    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores &
 elif [[ $MODE == 3 ]]; then
     read -p "How many cores should I run the longer models on?" ncores
     echo "Running 4 jobs on "$ncores" cores each"
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION cv_macro_benchmark > cv_macro_benchmark.out &
     nice mpirun -n $ncores $PYTHON/bin/py$VERSION m16_agn > m16_agn.out &
-    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores
+    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores 
 fi
 
 # if we're in mode 1 then we are just running quick models

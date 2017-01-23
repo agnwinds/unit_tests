@@ -180,6 +180,7 @@ if __name__ == "__main__":		# allows one to run from command line without runnin
 		inp.write("Disk_radiation(y=1)                              0\n")
 		inp.write("Wind_radiation(y=1)                              0\n")
 		inp.write("QSO_BH_radiation(y=1)                            1\n")
+		inp.write("Number.of.wind.components() 1\n")
 		inp.write("Rad_type_for_star(0=bb,1=models)_to_make_wind                   0\n")
 		if spec_type=='brem':
 			inp.write("Rad_type_for_agn()_to_make_wind                   5\n")
@@ -197,6 +198,7 @@ if __name__ == "__main__":		# allows one to run from command line without runnin
 			inp.write('agn_bremsstrahlung_alpha  '+str(alpha_brem)+'\n')
 		elif spec_type=='table':
 			inp.write("agn_power_law_index "+str(agn_alpha)+"\n")
+			inp.write("geometry_for_pl_source(0=sphere,1=lamp_post)  0\n")
 			inp.write("low_energy_break(ev) "+str(agn_table_lo)+"\n")
 			inp.write("high_energy_break(ev) "+str(agn_table_hi)+"\n")
 		inp.write("Torus(0=no,1=yes) 				 0\n")
@@ -216,6 +218,7 @@ if __name__ == "__main__":		# allows one to run from command line without runnin
 		inp.write("shell.wind.v_at_rmax(cm)                    1.00010\n")
 		inp.write("shell.wind.acceleration_exponent                   1\n")
 		inp.write("wind.filling_factor(1=smooth,<1=clumped) (1)       1\n")
+		inp.write("filling_factor(1=smooth,<1=clumped) (1)       1\n")
 		inp.write("spec.type(flambda(1),fnu(2),basic(other)                    2\n")
 		inp.write("reverb.type (0) 0\n")
 		inp.write("Extra.diagnostics(0=no)                           0\n")

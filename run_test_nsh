@@ -1,0 +1,94 @@
+#!/bin/bash
+##########################################
+#
+#		University of Southampton, 9 March 2016
+#
+#		James Matthews
+#
+#		run_test
+#
+# run_test is a shell script which compiles python then runs a load 
+# standard parameter files.
+#
+# Usage: ./run_test [version] [mode]"
+#  version: version of Python to run
+#  mode: 0, small test, 1, medium with fiducial agn, 2, large parallel test w/ matoms 3
+#  or: -h : print this message
+#
+# Environment variables needed are
+# PYTHON : normal git repo
+##########################################
+
+display_help() { 
+	echo "run_test is a shell script which compiles PYTHON then runs a load of standard parameter files."
+	echo ""
+	echo "Usage: ./run_test [version] [mode]"
+	echo ""
+	echo "version: version of Python to run"
+	echo "mode: 0, small test, 1, large parallel test"
+	echo "-h : print this message"
+	echo "" 
+	exit 
+	} 
+
+
+VERSION=""
+MODE=1
+
+
+if [ $# -lt 1 ]; then 
+    display_help
+elif [ $# -lt 2 ]; then 
+    if [[ $1 == "-h" ]]; then
+    	display_help
+    fi
+else
+    echo "Reading version and mode from cmd line..."
+    VERSION=$1
+    MODE=$2    
+    ncores=$3
+fi
+
+# make a folder to store my outputs in
+DATE=$(date +%F)
+FOLDER="test_"$VERSION"_"$DATE
+echo $FOLDER
+mkdir $FOLDER
+cd $FOLDER
+
+
+
+# First make sure the error and output files are empty.
+: > run_test_out.txt
+: > run_test_err.txt
+
+date > run_test_out.txt
+date > run_test_err.txt
+
+cp $PYTHON/examples/core/*.pf .
+
+Setup_Py_Dir
+
+
+# run the ion loop
+# python $PYTEST/scripts/ion_loop_jm.py $VERSION $VERSION standard78 &
+
+# if we are in mode 2 or 3 then we should really be running multicore
+if [[ $MODE == 2 ]]; then
+    echo "Running 2 jobs on "$ncores" cores each"
+    nice nohup mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
+    python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores > ion_loop.out &
+elif [[ $MODE == 3 ]]; then
+    echo "Running 4 jobs on "$ncores" cores each"
+    nice nohup mpirun -n $ncores $PYTHON/bin/py$VERSION fiducial_agn > fiducial_agn.out &
+    nice nohup mpirun -n $ncores $PYTHON/bin/py$VERSION cv_macro_benchmark > cv_macro_benchmark.out &
+    nice nohup mpirun -n $ncores $PYTHON/bin/py$VERSION m16_agn > m16_agn.out &
+    nohup python ../run_ion_loop.py ../AGN_vIP.param $VERSION $ncores > ion_loop.out &
+fi
+
+# if we're in mode 1 then we are just running quick models
+# these are all runnable on 1 core in a reasonable time and run in all modes
+nohup py$VERSION cv_standard > cv_standard.out &
+nohup py$VERSION 1d_sn > 1d_sn.out &
+nohup py$VERSION star > star.out &
+

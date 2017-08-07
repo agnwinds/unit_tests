@@ -61,7 +61,6 @@ def run_py_wind (fname, FOLDER, vers="", cmds=None, ilv=None):
 	'''
 
 	py_wind_cmd = 'py_wind'+vers
-
 	if which(py_wind_cmd) == None:
 		raise RuntimeError("Could not find executable %s. Compile it!" % py_wind_cmd)
 
@@ -72,6 +71,7 @@ def run_py_wind (fname, FOLDER, vers="", cmds=None, ilv=None):
 	np.savetxt("_tempcmd.txt", x, fmt = "%s")
 
 	cmd = py_wind_cmd+" "+FOLDER+fname+' < _tempcmd.txt > tempfile'
+	print "about to run py_wind with command: ",cmd
 
 	isys = os.system(cmd)
 
